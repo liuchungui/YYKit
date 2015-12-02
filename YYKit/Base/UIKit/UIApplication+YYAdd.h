@@ -40,7 +40,7 @@
 /// Application's Build number. e.g. "123"
 @property (nonatomic, readonly) NSString *appBuildVersion;
 
-/// Whether this app is priated (not install from appstore).
+/// Whether this app is pirated (not install from appstore).
 @property (nonatomic, readonly) BOOL isPirated;
 
 /// Whether this app is being debugged (debugger attached).
@@ -59,6 +59,8 @@
  status bar network activity indicator.
  
  This method is thread safe.
+ 
+ This method has no effect in App Extension.
  */
 - (void)incrementNetworkActivityCount;
 
@@ -68,7 +70,16 @@
  status bar network activity indicator.
  
  This method is thread safe.
+ 
+ This method has no effect in App Extension.
  */
 - (void)decrementNetworkActivityCount;
+
+
+/// Returns YES in App Extension.
++ (BOOL)isAppExtension;
+
+/// Same as sharedApplication, but returns nil in App Extension.
++ (UIApplication *)sharedExtensionApplication;
 
 @end
